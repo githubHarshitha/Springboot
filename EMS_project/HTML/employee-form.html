@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Employee Form</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/Styles.css}">
+</head>
+<body>
+<h1>Employee Form</h1>
+<form th:action="@{/save}" th:object="${employee}" method="post">
+    <input type="hidden" th:field="*{id}" />
+    <div>
+        <label>First Name:</label>
+        <input type="text" th:field="*{firstname}" required/>
+    </div>
+    <div>
+        <label>Last Name:</label>
+        <input type="text" th:field="*{lastname}" required/>
+    </div>
+    <div>
+        <label>Email:</label>
+        <input type="text" th:field="*{email}" required/>
+    </div>
+    <div>
+        <label>Image URL:</label>
+        <input type="text" th:field="*{imageurl}" required/>
+    </div>
+    <div>
+        <label>Department:</label>
+        <select th:field="*{department.id}">
+            <option th:each="department:${departments}" th:value="${department.id}" th:text="${department.name}"></option>
+        </select>
+        <a class="button" href="/departments/add" style="Styles.css"> Create New Department</a>
+    </div>
+    <div>
+        <button type="submit">Save</button>
+    </div>
+    </form>
+    <a class="button" href="/"> Back to Employee</a>
+</body>
+</html>
